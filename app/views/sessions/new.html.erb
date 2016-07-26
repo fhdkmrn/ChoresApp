@@ -1,0 +1,58 @@
+<nav class='navbar navbar-default' role='navigation'>
+<div class='container-fluid'>
+<!-- Brand and toggle get grouped for better mobile display -->
+<div class='navbar-header'>
+<button class='navbar-toggle' data-target='#bs-example-navbar-collapse-1' data-toggle='collapse' type='button'>
+<span class='sr-only'>Toggle navigation</span>
+<span class='icon-bar'></span>
+<span class='icon-bar'></span>
+<span class='icon-bar'></span>
+</button>
+<a class='navbar-brand' href='/'>
+  <img alt="tommy pic" id="logo" src="tommy.jpg" width="40" height="30" />
+</a>
+</div>
+<form class='navbar-form navbar-left' id='search' role='search'>
+
+</form>
+<!-- Collect the nav links, forms, and other content for toggling -->
+<div class='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
+<ul class='nav navbar-nav'>
+<!-- <li><haml_loud> link_to &quot;Discussions&quot;, discussions_path </haml_loud></li> -->
+</ul>
+<ul class='nav navbar-nav navbar-right'>
+<li>
+<a class="navbar-link" href="/signup">Sign up</a>
+</li>
+<li><a class="navbar-link" href="/login">Login</a></li>
+</ul>
+</div>
+<!-- /.navbar-collapse -->
+</div>
+<!-- /.container-fluid -->
+</nav>
+<% provide(:title, "Log in") %>
+<h1 style="margin-bottom:30px;" align = "center">Log in</h1>
+
+<% if flash[:danger] != nil %>
+<div class="flash-alert alert alert-danger" >
+<%= flash[:danger]%>
+</div>
+<% end %>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(:session, url: login_path) do |f| %>
+
+      <%= f.label :email, class: 'login-input' %>
+      <%= f.email_field :email, class: 'form-control login-input' %>
+
+      <%= f.label :password, class: 'login-input' %>
+      <%= f.password_field :password, class: 'form-control login-input' %>
+
+      <%= f.submit "Log in", class: "btn btn-primary btn-login" %>
+    <% end %>
+
+    <p style="margin-top:20px">New user? <%= link_to "Sign up now!", signup_path %></p>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hi <%= @user.name %></h1>
+    <p>
+      We hope you enjoyed your week at the Putnasty House. This week, your chore is to <b><%= Choreslist.find_by(taskID:user.choreCycle).choreName%></b>! Please complete this by the Saturday!
+    </p>
+    <p>
+    </p>
+    <p>
+    Make sure to go and approve people throughout the week if they have done their chore, or request trades with anyone that you would like. Visit the site at ___________
+    </p>
+    <p>
+    </p>
+    <p>
+      Best, Putnasty
+    </p>
+  </body>
+</html>
