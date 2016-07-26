@@ -5,7 +5,13 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.5'
 gem 'validates_email_format_of'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+# gem 'sqlite3'
+group :development, :test do
+  gem 'sqlite3'
+end
+group :production do
+  gem 'pg'
+end
 gem 'tzinfo-data', platforms: [:x64_mingw, :mingw, :mswin]
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
