@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 20160630023535) do
     t.string   "email"
     t.string   "password_digest"
     t.string   "password_confirmation"
-    t.integer  "choreCycle"
+    t.string   "choreCycle"
     t.string   "tags"
     t.string   "approvalLists",         default: "--- []\n"
     t.string   "tradeRequests",         default: "--- []\n"
