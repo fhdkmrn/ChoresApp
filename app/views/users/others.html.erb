@@ -134,10 +134,13 @@
 <h4>Current Chore </h4>
 <p> <%= @current_chore.choreName %> </p>
 <h4> Status </h4>
-
+<% if @user.approvalLists.include? "Done" %>
+<p> <b> Done </b> </p>
+<% else %>
 <p> In Progress   
 <%= button_to "Approve", {:controller => "users", :id => @user.id, :action => "approve"}, :class => 'btn btn-info', :style => "margin-left:5%" %>
 </p>
+<% end %>
 <% if @user.approvalLists.include? "Done" %>
 <p> <b> <%= @user.name %> </b> has been cleared for this week already </p>
 

@@ -119,7 +119,7 @@
 <% end %>		
 <% for u in eval(@user.tradeRequests) %>
 
-  <li><b> <%= u %></b> has requested to trade chore of <b><%= Choreslist.all.find_by(taskId: User.all.find_by(name:u).choreCycle).choreName %></b> with you!
+  <li><b> <%= u %></b> has requested to trade chore of <b><%= Choreslist.all.find_by(taskID: User.all.find_by(name:u).choreCycle).choreName %></b> with you!
 <!-- wow this one line is really really long -->
 <% end %>
 </p>
