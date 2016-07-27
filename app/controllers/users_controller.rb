@@ -160,7 +160,7 @@ class UsersController < ApplicationController
 		  user.approvalLists = []
 		  user.tradeRequests = []
 		  user.acceptedTrade = []
-		  user.declineTrade = []
+		  user.declinedTrade = []
 		  user.save
 		  session[:user_id] = user.id
 		  ChoresMailer.welcome_email_first(user).deliver_now
