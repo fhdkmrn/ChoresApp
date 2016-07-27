@@ -87,7 +87,7 @@ class UsersController < ApplicationController
 		@current_user = User.find_by(id: session[:user_id])
 		chore = Choreslist.find_by(taskID:@user.choreCycle)
 	    @current_chore = chore
-	    if @user != @current_user
+	    if @user != @current_user && eval(@user.approvalLists).count < 2 && eval(@current_user.approvalLists).count < 2
 	    	if eval(@user.tradeRequests).include? @current_user.name
 			    flash.now[:notice] = "You have already requested trade with this user!"
 			else

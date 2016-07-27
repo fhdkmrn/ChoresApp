@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   get '/logout' => 'sessions#destroy'
   post '/logout' => 'sessions#destroy'
   get '/signup' => 'users#new'
-  #get '/users' => 'users#others'
   post '/users' => 'users#create'
   get '/user' => 'users#show'
   get '/leaderboard' => 'leaderboard#index'
@@ -15,10 +14,7 @@ Rails.application.routes.draw do
   get '/users/:id', to: 'users#others'
   post '/users/:id/approve' => 'users#approve'
   get '/users/:id/trade' => 'users#trade'
-
-
   post '/users/:id/acceptTrade' => 'users#acceptTrade'
-
   post '/users/declineTrade' => 'users#declineTrade'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

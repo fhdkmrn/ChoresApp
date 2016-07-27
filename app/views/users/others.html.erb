@@ -113,7 +113,9 @@
 	<div class='col-md-12' style='text-align: center;'>
 
 <button class = "btn btn-large"> Like </button>
+<% if eval(@user.approvalLists).count < 2 && eval(@current_user.approvalLists).count < 2 %>
 <%= link_to "Request Trade", {:controller => "users", :id => @user.id, :action => "trade"}, :class => 'btn btn-info', :style => "margin-left:5%" %>
+<% end %>
 
 <h4>
 <%= @user.points %> Points

@@ -6,6 +6,8 @@ task :update_chores => :environment do
 		chore = Choreslist.find_by(taskID:user.choreCycle)
 		chore.user = user.name
 		ChoresMailer.weekly_email(user).deliver_now
+		user.approvalLists = []
+		user.tradeRequests = []
   	end
   end
 end
