@@ -124,6 +124,13 @@
 <% if eval(@user.approvalLists).count >= 2 %>
 <li> You are done with your tasks for this week. </li>
 <% end %>
+<% for u in eval(@user.acceptedTrade) %>
+  <li><b><%= u %> </b> has accepted your trade request </li>
+<% end %>
+<% for u in eval(@user.declinedTrade) %>
+  <li><b><%= u %> </b> has declined your trade request </li>
+<% end %>
+
 <% for u in eval(@user.tradeRequests) %>
 
   <li><b> <%= u %></b> has requested to trade chore of <b><%= Choreslist.all.find_by(taskID: User.all.find_by(name:u).choreCycle).choreName %></b> with you!

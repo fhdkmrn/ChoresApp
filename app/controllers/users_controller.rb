@@ -114,7 +114,7 @@ class UsersController < ApplicationController
 		@user.choreCycle, @secondUser.choreCycle = @secondUser.choreCycle, @user.choreCycle
 
 		@user.tradeRequests = eval(@user.tradeRequests) - [@secondUser.name]
-
+		@secondUser.acceptedTrade = [@user.name] + eval(@secondUser.acceptedTrade) 
 		if @user.save && @secondUser.save
 	    	flash[:notice] = "Successfully traded chores"
 	    else		
@@ -135,6 +135,7 @@ class UsersController < ApplicationController
 		@secondUser = User.find_by(id: params[:id])
 	
 		@user.tradeRequests = eval(@user.tradeRequests) - [@secondUser.name]
+		@secondUser.declineTrade =  [@user.name] + eval(@secondUser.declineTrade)
 
 		if @user.save && @secondUser.save
 	    	flash[:notice] = "Successfully declined the Request"
@@ -156,8 +157,7 @@ class UsersController < ApplicationController
 		if user.save
 		  user.choreCycle = User.all.count-1
 		  user.points = 0
-		  user.approvalLists = []
-		  user.tradeRequests = []
+
 		  user.save
 		  session[:user_id] = user.id
 		  ChoresMailer.welcome_email_first(user).deliver_now

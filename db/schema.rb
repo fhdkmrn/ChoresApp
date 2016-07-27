@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160630023535) do
+ActiveRecord::Schema.define(version: 20160727213608) do
 
   create_table "chore_lists", force: :cascade do |t|
     t.text "options"
@@ -47,11 +47,13 @@ ActiveRecord::Schema.define(version: 20160630023535) do
     t.string   "email"
     t.string   "password_digest"
     t.string   "password_confirmation"
-    t.string   "choreCycle"
+    t.integer  "choreCycle"
     t.string   "tags"
-    t.string   "approvalLists",         default: "--- []\n"
-    t.string   "tradeRequests",         default: "--- []\n"
+    t.string   "approvalLists",         default: "[]"
+    t.string   "tradeRequests",         default: "[]"
     t.string   "carrier"
+    t.string   "acceptedTrade",         default: "[]"
+    t.string   "declinedTrade",         default: "[]"
   end
 
 end
