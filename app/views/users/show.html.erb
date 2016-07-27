@@ -56,7 +56,7 @@
 <div class='col-md-12'>
 <h4>
 <span class='glyphicon glyphicon-list'></span>
-<a href="#">Your Home Page</a>
+<a href="/user">Your Home Page</a>
 <span class='pull-right'>#</span>
 </h4>
 
@@ -132,8 +132,10 @@
       <th style='font-size:25px'> Picture </th>
       <th style='font-size:25px'>Name </th>
       <th style='font-size:25px'> Event</th>
-	  <th style='font-size:25px'> Action</th>
-	  <th style='font-size:25px'>Action</th>
+      <th style='font-size:25px'> Current Chore</th>
+      <th style='font-size:25px'> New Chore</th>
+	  <th style='font-size:25px'> Accept</th>
+	  <th style='font-size:25px'>Decline</th>
     </tr>
   </thead>
  	<% for user in eval(@user.tradeRequests) %>
@@ -146,10 +148,14 @@
       	<%= user %>
       <td style='font-size:15px'>
       	Trade Request
+      <td style='font-size:15px'>
+        <%= Choreslist.all.find_by(taskID: User.all.find_by(name:@user.name).choreCycle).choreName %>
+      <td style='font-size:15px'>
+        <%= Choreslist.all.find_by(taskID: User.all.find_by(name:user).choreCycle).choreName %>
 	  <td style='font-size:25px'>
 		<%= button_to "Accept", {:controller => "users", :id => User.find_by(name: user).id, :action => "acceptTrade"}, :class => 'btn btn-info', :style => "margin-left:5%" %>
 	  <td style='font-size:25px'>
-		<%= button_to "Decline", {:controller => "users", :id => @user.id, :action => "declineTrade"}, :class => 'btn btn-info', :style => "margin-left:5%" %>
+		<%= button_to "Decline", {:controller => "users", :id => User.find_by(name: user).id, :action => "declineTrade"}, :class => 'btn btn-info', :style => "margin-left:5%" %>
     </tr>
     <%end%>
   </tbody>
