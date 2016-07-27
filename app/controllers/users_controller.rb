@@ -89,12 +89,12 @@ class UsersController < ApplicationController
 	    @current_chore = chore
 	    if @user != @current_user
 	    	if eval(@user.tradeRequests).include? @current_user.name
-			    flash[:notice] = "You have already requested trade with this user!"
+			    flash.now[:notice] = "You have already requested trade with this user!"
 			else
 
 				@user.tradeRequests = eval(@user.tradeRequests) + [@current_user.name]
 	    		if @user.save
-	    			flash[:notice] = "Successfully Requested Trade!"
+	    			flash.now[:notice] = "Successfully Requested Trade!"
 	    		else		
 	    			flash[:notice] = @user.errors.full_messages
 	    		end	
