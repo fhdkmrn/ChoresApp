@@ -22,6 +22,7 @@ gem 'coffee-script-source', '1.8.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'
 gem 'email_verifier'
+gem 'rails_12factor'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
