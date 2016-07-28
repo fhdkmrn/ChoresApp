@@ -157,10 +157,10 @@ class UsersController < ApplicationController
 		if user.save
 		  user.choreCycle = User.count - 1
 		  user.points = 0
-		  user.approvalLists = []
-		  user.tradeRequests = []
-		  user.acceptedTrade = []
-		  user.declinedTrade = []
+		  user.approvalLists = "[]"
+		  user.tradeRequests = "[]"
+		  user.acceptedTrade = "[]"
+		  user.declinedTrade = "[]"
 		  user.save
 		  session[:user_id] = user.id
 		  ChoresMailer.welcome_email_first(user).deliver_now
