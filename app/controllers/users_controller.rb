@@ -155,7 +155,7 @@ class UsersController < ApplicationController
 	def create
 		user = User.new(user_params)
 		if user.save
-		  user.choreCycle = User.all.count-1
+		  user.choreCycle = User.count - 1
 		  user.points = 0
 		  user.approvalLists = []
 		  user.tradeRequests = []

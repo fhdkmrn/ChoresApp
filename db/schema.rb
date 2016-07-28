@@ -49,11 +49,11 @@ ActiveRecord::Schema.define(version: 20160727213608) do
     t.string   "password_confirmation"
     t.integer  "choreCycle"
     t.string   "tags"
-    t.string   "approvalLists",         default: "[]"
-    t.string   "tradeRequests",         default: "[]"
+    t.string   "approvalLists",         default: "--- []\n"
+    t.string   "tradeRequests",         default: "--- []\n"
     t.string   "carrier"
-    t.string   "acceptedTrade",         default: "[]"
-    t.string   "declinedTrade",         default: "[]"
+    t.string   "acceptedTrade",         default: "--- []\n"
+    t.string   "declinedTrade",         default: "--- []\n"
   end
 
 end
