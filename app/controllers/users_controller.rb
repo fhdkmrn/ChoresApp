@@ -135,7 +135,7 @@ class UsersController < ApplicationController
 		@secondUser = User.find_by(id: params[:id])
 	
 		@user.tradeRequests = eval(@user.tradeRequests) - [@secondUser.name]
-		@secondUser.declineTrade =  [@user.name] + eval(@secondUser.declineTrade)
+		@secondUser.declinedTrade =  [@user.name] + eval(@secondUser.declinedTrade)
 
 		if @user.save && @secondUser.save
 	    	flash[:notice] = "Successfully declined the Request"
