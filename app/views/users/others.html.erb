@@ -58,7 +58,7 @@
 </div>
 <div class='col-md-12'>
 
- <%= image_tag @current_user.photo.url, :size=>"220x200" %> 
+ <%= image_tag(@current_user.temp_profile, :size=>"220x200") %> 
 </div>
 <div class='col-md-12'>
 <h4>
@@ -127,7 +127,7 @@
 </div>
 <div class='col-md-12'>
 
- <%= image_tag @user.photo.url, :size=>"220x200" %> 
+ <%= image_tag(@user.temp_profile, :size=>"220x200") %> 
 </div>
 <div class='col-md-12'>
 
