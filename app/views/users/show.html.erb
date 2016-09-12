@@ -56,7 +56,7 @@
 </div>
 <div class='col-md-12'>
 
- <%= image_tag @user.photo.url, :size=>"220x200" %> 
+ <%= image_tag @user.temp_profile, :size=>"220x200" %> 
 </div>
 <div class='col-md-12'>
 <h4>
@@ -159,7 +159,7 @@
 	<tbody>
 	 <tr>
       <td>
- 		<%= image_tag(User.find_by(name:user).photo.url,:size=>"50x50") %></td>
+ 		<%= image_tag(User.find_by(name:user).temp_profile,:size=>"50x50") %></td>
       <td style='font-size:15px'>
       	<%= user %>
       <td style='font-size:15px'>

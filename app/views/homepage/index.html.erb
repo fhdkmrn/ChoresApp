@@ -52,7 +52,7 @@
   <tbody>
     <tr>
       <th scope="row"><p style="font-size:20px"> <%= User.order(points: :desc).index(user)+1 %>  </p></th>
-      <td><%= image_tag(user.photo.url,:size=>"100x100") %></td>
+      <td><%= image_tag(user.temp_profile,:size=>"100x100") %></td>
       <td>
 				<%= user.name %>
 
