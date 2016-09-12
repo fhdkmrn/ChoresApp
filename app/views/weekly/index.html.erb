@@ -51,7 +51,7 @@
 </div>
 <div class='col-md-12'>
 
- <%= image_tag @user.photo.url, :size=>"220x200" %> 
+ <%= image_tag @user.temp_profile, :size=>"220x200" %> 
 </div>
 <div class='col-md-12'>
 <h4>
@@ -104,7 +104,7 @@
 		<h1> Other People </h1>
 		<% for user in @users %>
 			<% if user != @user %>
-		 		<div><%= image_tag user.photo.url, :size=>"160x160" %> </div>
+		 		<div><%= image_tag user.temp_profile, :size=>"160x160" %> </div>
 				<a href= <%="/users/" + user.id.to_s %>> <%= user.name %></a>
 			<%end%>
 		<%end%>
