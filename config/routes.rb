@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get '/user' => 'users#show'
   get '/leaderboard' => 'leaderboard#index'
   get 'weekly' => 'weekly#index'
+  
   get '/users/:id', to: 'users#others'
   post '/users/:id/approve' => 'users#approve'
   get '/users/:id/trade' => 'users#trade'
