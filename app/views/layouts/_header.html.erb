@@ -1,0 +1,45 @@
+
+
+<nav class='navbar navbar-default' role='navigation'>
+<div class='container-fluid'>
+<!-- Brand and toggle get grouped for better mobile display -->
+<div class='navbar-header'>
+<button class='navbar-toggle' data-target='#bs-example-navbar-collapse-1' data-toggle='collapse' type='button'>
+<span class='sr-only'>Toggle navigation</span>
+<span class='icon-bar'></span>
+<span class='icon-bar'></span>
+<span class='icon-bar'></span>
+</button>
+
+<a class='navbar-brand' href='/'>
+  <img alt="tommy pic" id="logo" src="tommy.jpg" width="40" height="30" />
+</a>
+</div>
+
+<div class='form-group col-xs-4'>
+
+</div>
+</form>
+<!-- Collect the nav links, forms, and other content for toggling -->
+<div class='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
+<ul class='nav navbar-nav'>
+<!-- <li><haml_loud> link_to &quot;Discussions&quot;, discussions_path </haml_loud></li> -->
+</ul>
+<ul class='nav navbar-nav navbar-right'>
+<li>
+<a class="navbar-link"><%= @user.email %></a>
+</li>
+<li> <%= link_to "Log out", "/logout", method: "destroy" %>
+</li>
+</ul>
+</div>
+<!-- /.navbar-collapse -->
+</div>
+
+<!-- /.container-fluid -->
+</nav>
+<% if notice != nil %>
+<div class="flash-alert alert alert-success" style="margin-top:-2%;" >
+  <%= notice %>
+</div>
+<% end %>

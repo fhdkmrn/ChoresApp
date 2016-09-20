@@ -1,0 +1,62 @@
+<div class='col-md-3' style='border-right:1px solid #dddddd;'>
+<div class='col-md-12' style='text-align: center;'>
+<h4>
+<%= @user.points %> Points
+</h4>
+<h5>
+<a><%= @user.name %>
+</a>
+</h5>
+</div>
+<div class='col-md-12'>
+
+ <%= image_tag @user.temp_profile, :size=>"220x200" %> 
+</div>
+<div class='col-md-12'>
+<h4>
+<span class='glyphicon glyphicon-list'></span>
+<a href="/user">Your Home Page</a>
+<span class='pull-right'>#</span>
+</h4>
+
+<h4>
+<span class='glyphicon glyphicon-star'></span>
+<a href="#">Leaderboard</a>
+<span class='pull-right'>#</span>
+</h4>
+
+<h4 style="font-size:15px">
+<span class='glyphicon glyphicon-globe'></span>
+<a href="/weekly">This Week in the House</a>
+<span class='pull-right'>#</span>
+</h4>
+<h4>
+<span class='glyphicon glyphicon-th'></span>
+<a href="/user">Your Inventory</a>
+<span class='pull-right'>#</span>
+</h4>
+</div>
+
+<div class='col-md-12'>
+<h4>Group</h4>
+<p>
+<span class='tag-label label-gap'>Putnasty Pirates</span>
+<span class='tag-label label-gap'></span>
+</p>
+
+</div>
+
+
+
+<div class='col-md-12'>
+<h4>Phone Number</h4>
+<p><%= @user.phone %></p>
+<p></p>
+<p></p>
+</div>
+<!-- SOCIAL ICONS -->
+<!-- END SOCIAL ICONS -->
+</div>
+<!-- END PROFILE INFO -->
+<!-- POSTED BY -->
+<!-- View for index action in user's controleer -->
