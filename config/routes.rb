@@ -11,12 +11,13 @@ Rails.application.routes.draw do
   get '/user' => 'users#show'
   get '/leaderboard' => 'leaderboard#index'
   get 'weekly' => 'weekly#index'
-  
+  get 'weekly/events' => 'weekly#events'
   get '/users/:id', to: 'users#others'
   post '/users/:id/approve' => 'users#approve'
   get '/users/:id/trade' => 'users#trade'
   post '/users/:id/acceptTrade' => 'users#acceptTrade'
   post '/users/declineTrade' => 'users#declineTrade'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

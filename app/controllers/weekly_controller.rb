@@ -26,6 +26,14 @@ class WeeklyController < ApplicationController
 
 	end
 
+    def events
+		@user = User.find_by(id: session[:user_id])
+		if @user == nil
+		  redirect_to '/login'
+		end
+    end
+
+
 	def problems
 	end
 end
