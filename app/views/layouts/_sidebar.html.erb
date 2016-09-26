@@ -1,16 +1,16 @@
 <div class='col-md-3' style='border-right:1px solid #dddddd;'>
 <div class='col-md-12' style='text-align: center;'>
 <h4>
-<%= @user.points %> Points
+<%= current_user.points %> Points
 </h4>
 <h5>
-<a><%= @user.name %>
+<a><%= current_user.name %>
 </a>
 </h5>
 </div>
 <div class='col-md-12'>
 
- <%= image_tag @user.temp_profile, :size=>"220x200" %> 
+ <%= image_tag current_user.temp_profile, :size=>"220x200" %> 
 </div>
 <div class='col-md-12'>
 <h4>
@@ -58,7 +58,7 @@
 
 <div class='col-md-12'>
 <h4>Phone Number</h4>
-<p><%= @user.phone %></p>
+<p><%= current_user.phone %></p>
 <p></p>
 <p></p>
 </div>

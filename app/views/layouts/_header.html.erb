@@ -27,7 +27,7 @@
 </ul>
 <ul class='nav navbar-nav navbar-right'>
 <li>
-<a class="navbar-link"><%= @user.email %></a>
+<a class="navbar-link"><%= current_user.email %></a>
 </li>
 <li> <%= link_to "Log out", "/logout", method: "destroy" %>
 </li>
