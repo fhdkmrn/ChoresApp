@@ -31,10 +31,10 @@
 
 <% for u in eval(@user.tradeRequests) %>
 
-  <li><b> <%= u %></b> has requested to trade chore of <b><%= Choreslist.find_by(taskID: User.all.find_by(name:u).choreCycle).choreName %></b> with you!
+  <li><b> <%= u %></b> has requested to trade chore of <b><%= ChoresList.find_by(taskID: User.all.find_by(name:u).choreCycle).choreName %></b> with you!
 <!-- wow this one line is really really long -->
 <% end %>
-</p>
+</li>
 
 <% if eval(@user.tradeRequests).count > 0 %>
 
@@ -61,13 +61,13 @@
       <td style='font-size:15px'>
       	Trade Request
       <td style='font-size:15px'>
-        <%= Choreslist.all.find_by(taskID: User.all.find_by(name:@user.name).choreCycle).choreName %>
+        <%= ChoresList.all.find_by(taskID: User.all.find_by(name:@user.name).choreCycle).choreName %>
       <td style='font-size:15px'>
-        <%= Choreslist.all.find_by(taskID: User.all.find_by(name:user).choreCycle).choreName %>
+        <%= ChoresList.all.find_by(taskID: User.all.find_by(name:user).choreCycle).choreName %>
 	  <td style='font-size:25px'>
-		<%= button_to "Accept", {:controller => "users", :id => User.find_by(name: user).id, :action => "acceptTrade"}, :class => 'btn btn-info', :style => "margin-left:5%" %>
+		<%= button_to "Accept", { :controller => "user", :id => User.find_by(name: user).id, :action => "accept_trade"}, :class => 'btn btn-info', :style => "margin-left:5%" %>
 	  <td style='font-size:25px'>
-		<%= button_to "Decline", {:controller => "users", :id => User.find_by(name: user).id, :action => "declineTrade"}, :class => 'btn btn-info', :style => "margin-left:5%" %>
+		<%= button_to "Decline", { :controller => "user", :id => User.find_by(name: user).id, :action => "decline_trade"}, :class => 'btn btn-info', :style => "margin-left:5%" %>
     </tr>
     <%end%>
   </tbody>

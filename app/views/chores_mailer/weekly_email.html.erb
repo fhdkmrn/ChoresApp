@@ -6,7 +6,7 @@
   <body>
     <h1>Hi <%= @user.name %></h1>
     <p>
-      We hope you enjoyed your week at the Putnasty House. This week, your chore is to <b><%= Choreslist.find_by(taskID:user.choreCycle).choreName%></b>! Please complete this by the Saturday!
+      We hope you enjoyed your week at the Putnasty House. This week, your chore is to <b><%= ChoresList.find_by(taskID:user.choreCycle).choreName%></b>! Please complete this by the Saturday!
     </p>
     <p>
     </p>
