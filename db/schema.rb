@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160912043318) do
+ActiveRecord::Schema.define(version: 20210326101645) do
 
   create_table "chore_lists", force: :cascade do |t|
     t.text "options"
@@ -29,32 +28,32 @@ ActiveRecord::Schema.define(version: 20160912043318) do
   create_table "choreslists", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "choreName"
-    t.integer  "taskID"
-    t.string   "user"
+    t.string "choreName"
+    t.integer "taskID"
+    t.string "user"
   end
 
   create_table "users", force: :cascade do |t|
-    t.datetime "created_at",                                 null: false
-    t.datetime "updated_at",                                 null: false
-    t.string   "name"
-    t.integer  "points"
-    t.string   "phone"
-    t.string   "photo_file_name"
-    t.string   "photo_content_type"
-    t.integer  "photo_file_size"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+    t.integer "points"
+    t.string "phone"
+    t.string "photo_file_name"
+    t.string "photo_content_type"
+    t.bigint "photo_file_size"
     t.datetime "photo_updated_at"
-    t.string   "email"
-    t.string   "password_digest"
-    t.string   "password_confirmation"
-    t.string   "choreCycle"
-    t.string   "tags"
-    t.string   "approvalLists",         default: "--- []\n"
-    t.string   "tradeRequests",         default: "--- []\n"
-    t.string   "carrier"
-    t.string   "acceptedTrade",         default: "--- []\n"
-    t.string   "declinedTrade",         default: "--- []\n"
-    t.string   "temp_profile"
+    t.string "email"
+    t.string "password_digest"
+    t.string "password_confirmation"
+    t.string "choreCycle"
+    t.string "tags"
+    t.string "approvalLists", default: "--- []\n"
+    t.string "tradeRequests", default: "--- []\n"
+    t.string "carrier"
+    t.string "acceptedTrade", default: "--- []\n"
+    t.string "declinedTrade", default: "--- []\n"
+    t.string "temp_profile"
   end
 
 end

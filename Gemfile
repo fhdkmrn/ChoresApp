@@ -5,16 +5,16 @@ source 'https://rubygems.org'
 git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '5.0.0'
+gem 'rails', '5.1.3'
 gem 'validates_email_format_of'
 
+gem 'coffee-script-source', '1.8.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
-gem 'coffee-script-source', '1.8.0'
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.1.0'
+gem 'coffee-rails', '~> 4.2'
 gem 'email_verifier'
 gem 'paperclip'
 gem 'rails_12factor'
@@ -37,12 +37,14 @@ gem 'will_paginate', '~> 3.0.4'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'puma'
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3', '~> 1.3.13'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'listen'
 end
 
 group :development do
