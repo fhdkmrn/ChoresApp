@@ -1,8 +1,7 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.5'
+gem 'rails', '5.0.0'
 gem 'validates_email_format_of'
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3'
@@ -29,7 +28,7 @@ gem 'rails_12factor'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 gem 'figaro'
-gem 'bootstrap-sass','3.2.0.0'
+gem 'bootstrap-sass', '~> 3.2.0'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -39,7 +38,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
-gem "will_paginate", "~> 3.0.4" 
+gem "will_paginate", "~> 3.0.4"
 gem 'devise'
 
 # Use Unicorn as the app server
