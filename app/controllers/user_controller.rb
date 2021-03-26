@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class UsersController < ApplicationController
+class UserController < ApplicationController
   def new
     @user = User.find_by(id: session[:user_id])
     redirect_to user_path unless @user.nil?
