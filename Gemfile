@@ -1,16 +1,11 @@
-source 'https://rubygems.org'
+source "https://rubygems.org"
+
+git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '5.0.0'
 gem 'validates_email_format_of'
-# Use sqlite3 as the database for Active Record
-# gem 'sqlite3'
-group :development, :test do
-  gem 'sqlite3'
-end
-group :production do
-  gem 'pg'
-end
+
 gem 'tzinfo-data', platforms: [:x64_mingw, :mingw, :mswin]
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -22,8 +17,7 @@ gem 'coffee-script-source', '1.8.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'email_verifier'
 gem 'rails_12factor'
-# See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
+gem 'paperclip'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -41,13 +35,13 @@ gem 'bcrypt', '~> 3.1.7'
 gem "will_paginate", "~> 3.0.4"
 gem 'devise'
 
-# Use Unicorn as the app server
-# gem 'unicorn'
-
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
+  # Use sqlite3 as the database for Active Record
+  # gem 'sqlite3'
+  gem 'sqlite3'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 end
@@ -55,10 +49,10 @@ end
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
-
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
 
-gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
-
+group :production do
+  gem 'pg'
+end
