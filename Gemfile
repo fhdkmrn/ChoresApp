@@ -1,4 +1,6 @@
-source "https://rubygems.org"
+# frozen_string_literal: true
+
+source 'https://rubygems.org'
 
 git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
 
@@ -6,23 +8,21 @@ git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
 gem 'rails', '5.0.0'
 gem 'validates_email_format_of'
 
-gem 'tzinfo-data', platforms: [:x64_mingw, :mingw, :mswin]
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
 gem 'coffee-script-source', '1.8.0'
-
+gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'
 gem 'email_verifier'
-gem 'rails_12factor'
 gem 'paperclip'
+gem 'rails_12factor'
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails'
-gem 'figaro'
 gem 'bootstrap-sass', '~> 3.2.0'
+gem 'figaro'
+gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -32,16 +32,15 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
-gem "will_paginate", "~> 3.0.4"
 gem 'devise'
+gem 'will_paginate', '~> 3.0.4'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
-  # gem 'sqlite3'
-  gem 'sqlite3'
+  gem 'sqlite3', '~> 1.3.13'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 end
@@ -56,3 +55,5 @@ end
 group :production do
   gem 'pg'
 end
+
+gem 'tzinfo-data', platforms: %i[x64_mingw mingw mswin]
