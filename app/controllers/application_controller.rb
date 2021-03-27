@@ -14,4 +14,18 @@ class ApplicationController < ActionController::Base
   def authorize
     redirect_to login_path unless current_user
   end
+
+  def list_empty?
+    !!ChoresList.all.count.zero?
+  end
+
+  def list_cycle
+    chores = %w[sweeping bathroom cleaning wiping playing bye trying dying]
+    chore = ChoresList.new
+    (0..7).each do |i|
+      chore.choreName = chores[i]
+      chore.taskID = i
+      chore.save
+    end
+  end
 end
