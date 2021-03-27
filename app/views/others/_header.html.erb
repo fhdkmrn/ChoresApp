@@ -1,0 +1,35 @@
+<!-- header on -->
+<nav class='navbar navbar-default' role='navigation'>
+  <div class='container-fluid'>
+    <div class='navbar-header'>
+      <button class='navbar-toggle' data-target='#bs-example-navbar-collapse-1' data-toggle='collapse' type='button'>
+        <span class='sr-only'>Toggle navigation</span>
+      </button>
+      <%= link_to root_path, class: 'navbar-brand' do %>
+        <%= image_tag '/tommy.jpg', id: "logo", alt: 'Tommy pic', width: 40, height: 30 %>
+      <% end %>
+    </div>
+    <div class='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
+      <!--<ul class='nav navbar-nav'>
+        <!- <li><haml_loud> link_to &quot;Discussions&quot;, discussions_path </haml_loud></li> ->
+      </ul>-->
+      <ul class='nav navbar-nav navbar-right'>
+        <% if logged_in? %>
+          <li>
+            <%= link_to current_user.email, "#{current_user.email}" %>
+          </li>
+          <li><%= link_to "Log out", logout_path, method: :post %></li>
+        <% else %>
+          <li><%= link_to "Sign up", signup_path, class: "navbar-link" %></li>
+          <li><%= link_to "Login", login_path, class: "navbar-link" %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>
+<% unless notice.nil? %>
+  <div class="flash-alert alert alert-success" style="margin-top:-2%;">
+    <%= notice %>
+  </div>
+<% end %>
+<!-- header off -->

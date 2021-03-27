@@ -1,67 +1,52 @@
-<%= render partial: "layouts/header" %>
-<%= render partial: "layouts/sidebar" %>
-
-<div class="col-md-2">
-</div>
 <div class="col-md-3">
-	<div class='col-md-12' style='text-align: center;'>
-
-<button class = "btn btn-large"> Like </button>
-<% if eval(@user.approvalLists).count < 2 && eval(@current_user.approvalLists).count < 2 %>
-<%= link_to "Request Trade", { :controller => "user", :id => @user.id, :action => "trade"}, :class => 'btn btn-info', :style => "margin-left:5%" %>
-<% end %>
-
-<h4>
-<%= @user.points %> Points
-</h4>
-<h5>
-<a><%= @user.name %>
-</a>
-</h5>
-</div>
-<div class='col-md-12'>
-
- <%= image_tag(@user.temp_profile, :size=>"220x200") %> 
-</div>
-<div class='col-md-12'>
-
-</div>
-<div class='col-md-12'>
-<h4>Current Chore </h4>
-<p> <%= @current_chore.choreName %> </p>
-<h4> Status </h4>
-<% if @user.approvalLists.include? "Done" %>
-<p> <b> Done </b> </p>
-<% else %>
-<p> In Progress   
-<%= button_to "Approve", { :controller => "user", :id => @user.id, :action => "approve"}, :class => 'btn btn-info', :style => "margin-left:5%" %>
-</p>
-<% end %>
-<% if @user.approvalLists.include? "Done" %>
-<p> <b> <%= @user.name %> </b> has been cleared for this week already </p>
-
-<% else %>
-<p> <b> <%= @user.name %> </b> has <b> <%= eval(@user.approvalLists).count %> </b> approvals so far. </p>
-<% end %>
-<h4> Messages </h4>
-<p> 
-<% for approval in eval(@user.approvalLists) %>
-  <% if approval != "Done" %> 	
-  <li><b> <%= approval %></b> has approved <b><%= @user.name %></b>
-  <% end %>
-<% end %>	
-
-</p>
-<h4>Group</h4>
-<p>
-<span class='tag-label label-gap'>Putnasty Pirates</span>
-<span class='tag-label label-gap'></span>
-</p>
-</div>
-<div class='col-md-12'>
-<h4>Phone Number</h4>
-<p><%= @user.phone %></p>
-<p></p>
-<p></p>
-</div>
+  <div class='col-md-12' style='text-align: center;'>
+    <button class="btn btn-large"> Like</button>
+    <% if user.approvalLists.size < 2 && @current_user.approvalLists.size < 2 %>
+      <%# link_to "Request Trade", { :controller => "user", :id => @user.id, :action => "trade" }, :class => 'btn btn-info', :style => "margin-left:5%" %>
+      <%= link_to "Request Trade", user_path(:id), action_name: trade, class: 'btn btn-info', style: "margin-left:5%" %>
+    <% end %>
+    <h4><%= @user.points %> Points</h4>
+    <h5><%= link_to "", @user.name %></h5>
+  </div>
+  <div class='col-md-12'>
+    <%= image_tag(@user.temp_profile, :size => "220x200") %>
+  </div>
+  <div class='col-md-12'>
+    <h4>Current Chore </h4>
+    <p> <%= @current_chore.choreName %> </p>
+    <h4>Status</h4>
+    <% if @user.approvalLists.include? "Done" %>
+      <p><b>Done</b></p>
+    <% else %>
+      <p> In Progress
+        <%# button_to "Approve", { :controller => "user", :id => @user.id, :action => "approve" }, :class => 'btn btn-info', :style => "margin-left:5%" %>
+        <%= button_to "Approve", user_path(:id), action_name: approve, class: 'btn btn-info', style: "margin-left:5%" %>
+      </p>
+    <% end %>
+    <% if @user.approvalLists.include? "Done" %>
+      <p>
+        <b><%= @user.name %></b> has been cleared for this week already
+      </p>
+    <% else %>
+      <p>
+        <b><%= @user.name %></b> has <b><%= eval(@user.approvalLists).count %></b> approvals so far.
+      </p>
+    <% end %>
+    <h4> Messages </h4>
+    <p>
+      <% @user.approvalLists.each do |approval| %>
+        <% unless approval == "Done" %>
+        <li><b><%= approval %></b> has approved <b><%= @user.name %></b></li>
+      <% end %>
+    <% end %>
+    <h4>Group</h4>
+    <p>
+      <span class='tag-label label-gap'>Putnasty Pirates</span>
+      <span class='tag-label label-gap'></span>
+    </p>
+  </div>
+  <div class='col-md-12'>
+    <h4>Phone Number</h4>
+    <p><%= @user.phone %></p>
+  </div>
 </div>
