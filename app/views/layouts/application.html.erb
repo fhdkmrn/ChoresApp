@@ -1,15 +1,16 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Chores</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <title><%= @page_title || 'Chores' %></title>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+<%= render 'others/header' %>
 <%= yield %>
-
+<% if logged_in? %>
+  <%= render 'others/sidebar' %>
+<% end %>
 </body>
 </html>
