@@ -1,41 +1,35 @@
-<%=render partial: "layouts/header" %>
-<%=render partial: "layouts/sidebar" %>
 <div class="col-md-3">
-<h1 style="font-size:80px; "> Leaderboard </h1>
-
-<table class='table' style="margin-top:20%">
-	 <thead>
+  <h1 style="font-size:80px">Leaderboard</h1>
+  <table class='table' style="margin-top:20%">
+    <thead>
     <tr>
-      <th>#</th>
-      <th></th>
-      <th> Name</th>
-      <th>Points</th>
+      <% %w[# Name Points].each do |w| %>
+        <th><%= w %></th>
+      <% end %>
     </tr>
-  </thead>
- <% @users.each do |user| %>
-
-
-  <tbody>
-    <tr>
-      <th scope="row"><p style="font-size:20px"> <%= User.order(points: :desc).index(user)+1 %>  </p></th>
-      <td><%= image_tag(user.temp_profile,:size=>"100x100") %></td>
-      <td>
-      		<% if user == @user %>  
-				<b><%= user.name%></b></td>
-			<% else %>
-				<%= user.name %>
-			<%end%>
-
-      <td>
-      	   <% if user == @user %>  
-			 <b><%= user.points%></b></td>
-		   <% else %>
-		   		<%= user.points %>
-		   	<%end%>
-    </tr>
-
-  </tbody>
-  <%end%>
-</table>
-  
+    </thead>
+    <% @users.each do |user| %>
+      <tbody>
+      <tr>
+        <th scope="row"><p style="font-size:20px"> <%= User.order(points: :desc).index(user) + 1 %>  </p></th>
+        <td>
+          <%= image_tag(user.temp_profile, :size => "100x100") %>
+        </td>
+        <% if user == @user %>
+          <td>
+            <b><%= user.name %></b>
+          </td>
+        <% else %>
+          <%= user.name %>
+        <% end %>
+        <% if user == @user %>
+          <td>
+            <b><%= user.points %></b></td>
+        <% else %>
+          <%= user.points %>
+        <% end %>
+      </tr>
+      </tbody>
+    <% end %>
+  </table>
 </div>
