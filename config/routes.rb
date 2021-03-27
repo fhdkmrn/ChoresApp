@@ -12,9 +12,10 @@ Rails.application.routes.draw do
   get 'leaderboard' => 'leaderboard#index'
   get 'weekly' => 'weekly#index'
   get 'weekly/events' => 'weekly#events'
-  get 'users/:id' => 'user#others'
-  post 'users/:id/approve' => 'user#approve'
-  get 'users/:id/trade' => 'user#trade'
-  post 'users/:id/acceptTrade' => 'user#acceptTrade'
-  post 'users/decline_trade' => 'user#declineTrade'
+  get 'user/:id' => 'user#others'
+  post 'user/:id/approve' => 'user#approve'
+  get 'user/:id/trade' => 'user#trade'
+  post 'user/:id/acceptTrade' => 'user#acceptTrade'
+  post 'user/decline_trade' => 'user#declineTrade'
+  resources :user
 end
