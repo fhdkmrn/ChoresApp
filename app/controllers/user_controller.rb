@@ -14,30 +14,21 @@ class UserController < ApplicationController
   end
 
   def others
-    chores = %w[sweeping bathroom cleaning wiping playing bye trying dying]
     @user = User.find(params[:id])
-
     if User.find_by(id: params[:id]).nil?
       render status: 404
     else
       @user = User.find_by(id: params[:id])
     end
     @current_user = User.find_by(id: session[:user_id])
-    if ChoresList.all.count.zero?
-      chore = ChoresList.new
-      (0..7).each do |i|
-        chore.choreName = chores[i]
-        chore.taskID = i
-        chore.save
-      end
-    end
+    list_cycle if list_empty?
 
-    chore = ChoresList.find_by(taskID: @user.choreCycle)
-    chore.user = @user.name
-    chore.save
-    @current_chore = chore
+    @current_chore = ChoresList.find_by(taskID: @user.choreCycle)
+    return if @current_chore.nil?
+
+    @current_chore.user = @user.name
+    @current_chore.save!
     redirect_to login_path if @user.nil?
-    @users = User.order(points: :desc)
   end
 
   def approve
@@ -48,12 +39,12 @@ class UserController < ApplicationController
     if @user.approvalLists.include? 'Done'
       flash[:notice] = 'This user had been approved for this week already, he does not need your approval!'
     elsif @user != @current_user
-      if eval(@user.approvalLists).include? @current_user.name
+      if @user.approvalLists.include? @current_user.name
         flash[:notice] = 'You have already approved this user!'
       else
-        @user.approvalLists = eval(@user.approvalLists) + [@current_user.name]
+        @user.approvalLists = @user.approvalLists + [@current_user.name]
         @user.points += 50
-        @user.approvalLists = eval(@user.approvalLists) + ['Done'] if eval(@user.approvalLists).count >= 2
+        @user.approvalLists = @user.approvalLists + ['Done'] if @user.approvalLists.count >= 2
         flash[:notice] = if @user.save
                            'Successfully approved!'
                          else
@@ -61,7 +52,7 @@ class UserController < ApplicationController
                          end
       end
     end
-    redirect_to "/users/#{@user.id}"
+    redirect_to user_path(:id)
   end
 
   def trade
@@ -71,12 +62,11 @@ class UserController < ApplicationController
     @current_user = User.find_by(id: session[:user_id])
     chore = ChoresList.find_by(taskID: @user.choreCycle)
     @current_chore = chore
-    if @user != @current_user && eval(@user.approvalLists).count < 2 && eval(@current_user.approvalLists).count < 2
-      if eval(@user.tradeRequests).include? @current_user.name
+    unless @user == @current_user && @user.approvalLists.size < 2 && @current_user.approvalLists.size < 2
+      if @user.tradeRequests.include? @current_user.name
         flash.now[:notice] = 'You have already requested trade with this user!'
       else
-
-        @user.tradeRequests = eval(@user.tradeRequests) + [@current_user.name]
+        @user.tradeRequests = @user.tradeRequests + [@current_user.name]
         if @user.save
           flash.now[:notice] = 'Successfully Requested Trade!'
         else
@@ -93,27 +83,29 @@ class UserController < ApplicationController
 
     @user.choreCycle, @second_user.choreCycle = @second_user.choreCycle, @user.choreCycle
 
-    @user.tradeRequests = eval(@user.tradeRequests) - [@second_user.name]
-    @second_user.acceptedTrade = [@user.name] + eval(@second_user.acceptedTrade)
+    @user.tradeRequests = @user.tradeRequests - [@second_user.name]
+    @second_user.acceptedTrade = [@user.name] + @second_user.acceptedTrade
     flash[:notice] = if @user.save && @second_user.save
                        'Successfully traded chores'
                      else
                        @second_user.errors.full_messages
                      end
     chore = ChoresList.find_by(taskID: @user.choreCycle)
-    chore.user = @user.name
     chore_two = ChoresList.find_by(taskID: @second_user.choreCycle)
+    return if chore.nil? && chore_two.nil?
+
+    chore.user = @user.name
     chore_two.user = @second_user.name
-    chore.save
-    chore_two.save
+    chore.save!
+    chore_two.save!
     redirect_to user_path
   end
 
   def decline_trade
     @user = User.find_by(id: session[:user_id])
     @second_user = User.find_by(id: params[:id])
-    @user.tradeRequests = eval(@user.tradeRequests) - [@second_user.name]
-    @second_user.declinedTrade = [@user.name] + eval(@second_user.declinedTrade)
+    @user.tradeRequests = @user.tradeRequests - [@second_user.name]
+    @second_user.declinedTrade = [@user.name] + @second_user.declinedTrade
     flash[:notice] = if @user.save && @second_user.save
                        'Successfully declined the Request'
                      else
@@ -128,14 +120,14 @@ class UserController < ApplicationController
 
   def create
     user = User.new(user_params)
-    if user.save
+    if user.save!
       user.choreCycle = User.count - 1
       user.points = 0
       user.approvalLists = '[]'
       user.tradeRequests = '[]'
       user.acceptedTrade = '[]'
       user.declinedTrade = '[]'
-      user.save
+      user.save!
       session[:user_id] = user.id
       ChoresMailer.welcome_email_first(user).deliver_now
 
