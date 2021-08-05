@@ -1,39 +1,22 @@
+# frozen_string_literal: true
 
 class WeeklyController < ApplicationController
+  def index
+    @user = User.find_by(id: session[:user_id])
+    redirect_to login_path if @user.nil?
+    @users = User.order(points: :desc)
+    # For now, uninitialized chores_list
+    list_cycle if list_empty?
+    @current_chore = ChoresList.find_by(taskID: @user.choreCycle)
+    return if @current_chore.nil?
 
-	def index
-		@user = User.find_by(id: session[:user_id])
-		if @user == nil
-		  redirect_to '/login'
-		end
-		@users = User.order(points: :desc)
-		chores = ["sweeping","bathroom","cleaning","wiping","playing","bye","trying","dying"]
-		# For now, uninitialized choreslist
-		if Choreslist.all.count == 0
-			for i in 0..7
-				chore = Choreslist.new
-				chore.choreName = chores[i]
-				chore.taskID = i
-				chore.save
+    @current_chore.user = @user.name
+    @current_chore.save!
+    @users = User.paginate(page: params[:page])
+  end
 
-			end
-		end
-		chore = Choreslist.find_by(taskID:@user.choreCycle)
-		chore.user = @user.name
-		chore.save
-		@current_chore = chore
-     	@users = User.paginate(page: params[:page])
-
-	end
-
-    def events
-		@user = User.find_by(id: session[:user_id])
-		if @user == nil
-		  redirect_to '/login'
-		end
-    end
-
-
-	def problems
-	end
+  def events
+    @user = User.find_by(id: session[:user_id])
+    redirect_to login_path if @user.nil?
+  end
 end

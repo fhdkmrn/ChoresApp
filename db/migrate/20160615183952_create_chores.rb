@@ -1,4 +1,4 @@
-class CreateChores < ActiveRecord::Migration
+class CreateChores < ActiveRecord::Migration[5.1]
   def change
     create_table :chores do |t|
 

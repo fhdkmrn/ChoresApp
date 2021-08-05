@@ -1,0 +1,59 @@
+<h1 style="margin: 0 15% 5% 0">Notifications</h1>
+<div class="col-md-4">
+  <h4>Messages</h4>
+  <% @user.approvalLists.each do |approval| %>
+    <% unless approval == "Done" %>
+      <li><b> <%= approval %></b> has approved you
+    <% end %>
+  <% end %>
+  <% if @user.approvalLists.size >= 2 %>
+    <li> You are done with your tasks for this week.</li>
+  <% end %>
+  <% @user.acceptedTrade.each do |u| %>
+    <li><b><%= u %> </b> has accepted your trade request</li>
+  <% end %>
+  <% @user.declinedTrade.each do |u| %>
+    <li><b><%= u %></b> has declined your trade request</li>
+  <% end %>
+  <% @user.tradeRequests.each do |u| %>
+    <li>
+      <b><%= u %></b> has requested to trade chore of
+      <b><%= ChoresList.find_by(taskID: User.all.find_by(name: u).choreCycle).choreName %></b> with you!
+      <!-- wow this one line is really really long -->
+    </li>
+  <% end %>
+  <% if @user.tradeRequests.size > 0 %>
+    <table class='table' style="margin-top:20%">
+      <thead>
+      <tr>
+        <% ["Picture", "Name", "Event", "Current Chore", "New Chore", "Accept", "Decline"].each do |w| %>
+          <th style='font-size:25px'><%= w %></th>
+        <% end %>
+      </tr>
+      </thead>
+      <% @user.tradeRequests.each do |user| %>
+        <tbody>
+        <tr>
+          <td>
+            <%= image_tag user.temp_profile, :size => "50x50" %></td>
+          <td style='font-size:15px'>
+            <%= user %>
+          <td style='font-size:15px'>
+            Trade Request
+          <td style='font-size:15px'>
+            <%= ChoresList.all.find_by(taskID: User.all.find_by(name: @user.name).choreCycle).choreName %>
+          <td style='font-size:15px'>
+            <%= ChoresList.all.find_by(taskID: User.all.find_by(name: user).choreCycle).choreName %>
+          <td style='font-size:25px'>
+            <%= button_to "Accept", { :controller => "user", :id => User.find_by(name: user).id, :action => "accept_trade" }, :class => 'btn btn-info', :style => "margin-left:5%" %>
+          <td style='font-size:25px'>
+            <%= button_to "Decline", { :controller => "user", :id => User.find_by(name: user).id, :action => "decline_trade" }, :class => 'btn btn-info', :style => "margin-left:5%" %>
+        </tr>
+        </tbody>
+      <% end %>
+    </table>
+  <% end %>
+</div>
+<!-- <button class = "btn btn-default"> Accept </button>
+<button class = "btn btn-default"> Decline </button> -->
+

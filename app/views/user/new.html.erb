@@ -1,0 +1,44 @@
+<h1>Sign Up!</h1>
+<%= form_for :user, :html => { :class => "form-horizontal center", :multipart => true } do |f| %>
+  <% if @user.errors.any? %>
+    <div class="flash-alert alert alert-danger">
+      <div id="error_explanation">
+        <h2>
+          <% pluralize(@user.errors.count, "error") %> prohibited
+          this account from being created:
+        </h2>
+        <ul>
+          <% @user.errors.full_messages.each do |msg| %>
+            <li>
+              <% msg %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+  <% %i[name email phone].each do |i| %>
+    <div class="form-group">
+      <%= f.label i.to_sym, "#{i.to_s.capitalize}", class: "col-md-4 control-label" %>
+      <div class="col-md-4">
+        <%= f.text_field i.to_sym, class: "form-control" %>
+      </div>
+    </div>
+  <% end %>
+  <% %i[password password_confirmation photo].each do |i| %>
+    <div class="form-group">
+      <%= f.label i.to_sym, "#{i.to_s.capitalize}", class: "col-md-4 control-label" %>
+      <div class="col-md-4">
+        <%= i.to_sym == :photo ? (f.file_field i.to_sym) : (f.password_field i.to_sym) %>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+<div class="buttonHolder">
+  <%= submit_tag "Submit", id: "btn_s", class: "btn btn-info" %>
+</div>
+<% unless notice.nil? %>
+  <p id="notice">
+    <%= notice %>
+  </p>
+<% end %>

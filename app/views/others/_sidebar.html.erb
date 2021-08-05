@@ -1,0 +1,41 @@
+<div class='col-md-3' style='border-right:1px solid #dddddd;'>
+  <div class='col-md-12' style='text-align: center;'>
+    <h4>
+      <%= current_user.points %> Points
+    </h4>
+    <h5>
+      <a><%= current_user.name %>
+      </a>
+    </h5>
+  </div>
+  <div class='col-md-12'>
+    <%= image_tag current_user.temp_profile, :size => "220x200" %>
+  </div>
+  <div class='col-md-12'>
+    <% { "Your Home Page" => :user_path, "Leaderboard" => :leaderboard_path, "This Week in the House" => :weekly_path, "House Events" => :weekly_events_path }.each_pair do |k, v| %>
+      <h4>
+        <span class='glyphicon glyphicon-list'></span>
+        <%= link_to v, k %>
+        <span class='pull-right'>#</span>
+      </h4>
+    <% end %>
+  </div>
+
+  <div class='col-md-12'>
+    <h4>Group</h4>
+    <p>
+      <span class='tag-label label-gap'>Putnasty Pirates</span>
+      <span class='tag-label label-gap'></span>
+    </p>
+  </div>
+
+  <div class='col-md-12'>
+    <h4>Phone Number</h4>
+    <p><%= current_user.phone %></p>
+  </div>
+  <!-- SOCIAL ICONS -->
+  <!-- END SOCIAL ICONS -->
+</div>
+<!-- END PROFILE INFO -->
+<!-- POSTED BY -->
+<!-- View for index action in user's controleer -->
